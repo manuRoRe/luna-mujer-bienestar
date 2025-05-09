@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -12,7 +11,7 @@ import {
 } from "@/components/ui/select";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { CalendarDays, Heart, MoodHappy, ThermometerSun } from "lucide-react";
+import { CalendarDays, Heart, Smile, ThermometerSun } from "lucide-react";
 
 const CalendarPage = () => {
   const [date, setDate] = useState<Date | undefined>(new Date());
@@ -96,7 +95,7 @@ const CalendarPage = () => {
     if (currentDate > ovulation) {
       return {
         phase: "Fase Lútea",
-        icon: <MoodHappy className="h-5 w-5 text-blue-500" />,
+        icon: <Smile className="h-5 w-5 text-blue-500" />,
         info: "Tu cuerpo se prepara para la menstruación o un posible embarazo."
       };
     }

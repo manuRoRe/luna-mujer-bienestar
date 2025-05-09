@@ -1,14 +1,14 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { MoodHappy, ThermometerSun, Heart, CalendarHeart } from "lucide-react";
+import { Smile, ThermometerSun, Heart, CalendarDays } from "lucide-react";
 
 const SymptomLogger = () => {
   // Sample symptoms - would be dynamically populated in a real app
   const symptoms = [
     {
       category: "Estado de Ánimo",
-      icon: <MoodHappy className="h-5 w-5 text-yellow-500" />,
+      icon: <Smile className="h-5 w-5 text-yellow-500" />,
       options: ["Feliz", "Tranquila", "Ansiosa", "Irritable", "Triste"],
       color: "bg-yellow-100"
     },
@@ -26,7 +26,7 @@ const SymptomLogger = () => {
     },
     {
       category: "Ciclo",
-      icon: <CalendarHeart className="h-5 w-5 text-luna-purple" />,
+      icon: <CalendarDays className="h-5 w-5 text-luna-purple" />,
       options: ["Periodo", "Flujo Ligero", "Flujo Moderado", "Flujo Intenso", "Sin Periodo"],
       color: "bg-luna-light-purple"
     }

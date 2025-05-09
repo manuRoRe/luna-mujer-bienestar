@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -7,7 +6,7 @@ import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { CalendarClock, CalendarDays, User, Bell, Heart, MoodHappy } from "lucide-react";
+import { CalendarClock, CalendarDays, User, Bell, Heart, Smile } from "lucide-react";
 
 const ProfilePage = () => {
   return (
@@ -87,7 +86,7 @@ const ProfilePage = () => {
                   <Card className="luna-card">
                     <CardHeader>
                       <CardTitle className="flex items-center gap-2">
-                        <MoodHappy className="h-5 w-5 text-luna-purple" />
+                        <Smile className="h-5 w-5 text-luna-purple" />
                         Resumen
                       </CardTitle>
                     </CardHeader>
