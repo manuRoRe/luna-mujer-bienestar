@@ -126,12 +126,12 @@ const CalendarPage = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="bg-white rounded-lg p-4">
+                  <div className="bg-white rounded-lg p-4 w-full">
                     <Calendar
                       mode="single"
                       selected={date}
                       onSelect={setDate}
-                      className="pointer-events-auto mx-auto"
+                      className="w-full"
                       modifiers={{
                         periodStart: cycleData.periodStart,
                         period: {
