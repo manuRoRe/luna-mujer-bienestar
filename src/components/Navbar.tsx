@@ -55,9 +55,11 @@ const Navbar = () => {
             <User className="h-4 w-4" />
             <span>Perfil</span>
           </Link>
-          <Button className="luna-button-primary">
-            Iniciar Sesión
-          </Button>
+          <Link to="/login">
+            <Button className="luna-button-primary">
+              Iniciar Sesión
+            </Button>
+          </Link>
         </div>
 
         {/* Mobile menu */}
@@ -86,9 +88,15 @@ const Navbar = () => {
               <User className="h-4 w-4" />
               <span>Perfil</span>
             </Link>
-            <Button className="luna-button-primary w-full justify-center">
-              Iniciar Sesión
-            </Button>
+            <Link 
+              to="/login"
+              onClick={toggleMenu}
+              className="w-full"
+            >
+              <Button className="luna-button-primary w-full justify-center">
+                Iniciar Sesión
+              </Button>
+            </Link>
           </div>
         )}
       </div>
