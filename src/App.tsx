@@ -12,6 +12,15 @@ import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
 import ConsejosPage from "./pages/Consejos";
 
+// Admin Pages
+import AdminDashboard from "./pages/admin/Dashboard";
+import AdminUsers from "./pages/admin/Users"; 
+import AdminPeriods from "./pages/admin/Periods";
+import AdminSymptoms from "./pages/admin/Symptoms";
+import AdminReminders from "./pages/admin/Reminders";
+import AdminTips from "./pages/admin/Tips";
+import AdminLayout from "./pages/admin/AdminLayout";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -27,6 +36,17 @@ const App = () => (
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/consejos" element={<ConsejosPage />} />
+          
+          {/* Admin Routes */}
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route index element={<AdminDashboard />} />
+            <Route path="users" element={<AdminUsers />} />
+            <Route path="periods" element={<AdminPeriods />} />
+            <Route path="symptoms" element={<AdminSymptoms />} />
+            <Route path="reminders" element={<AdminReminders />} />
+            <Route path="tips" element={<AdminTips />} />
+          </Route>
+          
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
