@@ -7,6 +7,7 @@ import {
   User,
   Menu,
   X,
+  MessageSquare,
 } from "lucide-react";
 
 const Navbar = () => {
@@ -51,6 +52,10 @@ const Navbar = () => {
             <CalendarDays className="h-4 w-4" />
             <span>Calendario</span>
           </Link>
+          <Link to="/consejos" className="text-foreground hover:text-luna-purple transition-colors flex items-center gap-1">
+            <MessageSquare className="h-4 w-4" />
+            <span>Consejos</span>
+          </Link>
           <Link to="/profile" className="text-foreground hover:text-luna-purple transition-colors flex items-center gap-1">
             <User className="h-4 w-4" />
             <span>Perfil</span>
@@ -79,6 +84,14 @@ const Navbar = () => {
             >
               <CalendarDays className="h-4 w-4" />
               <span>Calendario</span>
+            </Link>
+            <Link 
+              to="/consejos" 
+              className="flex items-center gap-2 py-2 px-4 text-foreground hover:text-luna-purple hover:bg-luna-light-purple/20 rounded-md transition-colors"
+              onClick={toggleMenu}
+            >
+              <MessageSquare className="h-4 w-4" />
+              <span>Consejos</span>
             </Link>
             <Link 
               to="/profile" 
