@@ -16,6 +16,7 @@ import {
   Calendar, 
   Baby 
 } from "lucide-react";
+import Navbar from "@/components/Navbar";
 
 // Tipo para los consejos
 interface Consejo {
@@ -95,203 +96,186 @@ const ConsejosPage = () => {
         });
 
   return (
-    <div className="min-h-screen bg-background pb-20">
-      {/* Barra superior */}
-      <div className="w-full bg-white py-4 px-4 flex justify-between items-center shadow-sm">
-        <div className="flex items-center gap-2">
-          <div className="w-9 h-9 rounded-full bg-gray-300 flex items-center justify-center overflow-hidden">
-            <img
-              src="https://images.unsplash.com/photo-1721322800607-8c38375eef04?auto=format&fit=crop&q=80&w=100"
-              alt="Perfil"
-              className="w-full h-full object-cover"
-            />
-            <span className="absolute top-0 right-0 w-2.5 h-2.5 bg-red-500 rounded-full"></span>
-          </div>
-          <h1 className="text-xl font-semibold">Consejos</h1>
-        </div>
-        <div className="flex gap-4">
-          <BookmarkCheck size={24} 
-            onClick={() => setCategoriaActiva("favoritos")}
-            className={`cursor-pointer ${categoriaActiva === "favoritos" ? "text-luna-purple" : "text-gray-500"}`} 
-          />
-          <MessageSquare size={24} className="text-gray-500" />
-        </div>
-      </div>
+    <div className="min-h-screen bg-background">
+      {/* Navbar standard */}
+      <Navbar />
 
-      {/* Navegación por categorías */}
-      <div className="px-4 pt-6 pb-4">
-        <div className="flex justify-between gap-2 items-center">
-          {categorias.map((categoria) => (
-            <div 
-              key={categoria.id}
-              onClick={() => setCategoriaActiva(categoria.id)}
-              className="flex flex-col items-center cursor-pointer w-1/3"
-            >
-              <div className={`w-14 h-14 rounded-full border-2 flex items-center justify-center mb-2 ${
-                categoriaActiva === categoria.id ? "border-luna-purple" : "border-gray-300"
-              }`}>
-                <categoria.icono size={28} className={categoriaActiva === categoria.id ? "text-luna-purple" : "text-gray-600"} />
-              </div>
-              <p className="text-xs text-center font-medium">
-                {categoria.nombre}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Pestaña principal para mostrar todos/favoritos */}
-      <div className="px-4">
-        <Tabs defaultValue="todos" className="w-full" value={categoriaActiva === "favoritos" ? "favoritos" : "todos"}>
-          <TabsList className="w-full grid grid-cols-2 mb-6">
-            <TabsTrigger 
-              value="todos" 
-              onClick={() => setCategoriaActiva("todos")}
-              className={categoriaActiva !== "favoritos" ? "text-luna-purple font-medium" : ""}
-            >
-              Todos los consejos
-            </TabsTrigger>
-            <TabsTrigger 
-              value="favoritos" 
-              onClick={() => setCategoriaActiva("favoritos")}
-              className={categoriaActiva === "favoritos" ? "text-luna-purple font-medium" : ""}
-            >
-              Mis favoritos
-            </TabsTrigger>
-          </TabsList>
-
-          <TabsContent value="todos" className="space-y-6">
-            {/* Sección de consejos por categoría - Salud reproductiva */}
-            <div>
-              <h2 className="text-2xl font-bold mb-4">Aspectos básicos de salud reproductiva</h2>
-              <div className="grid grid-cols-1 gap-4">
-                {consejosData
-                  .filter(consejo => consejo.categoria === "Salud reproductiva")
-                  .map(consejo => (
-                    <ConsejoCard 
-                      key={consejo.id} 
-                      consejo={consejo} 
-                      esFavorito={favoritos.includes(consejo.id)}
-                      onToggleFavorito={() => toggleFavorito(consejo.id)}
-                      onClick={() => setConsejoSeleccionado(consejo)}
-                    />
-                  ))
-                }
-              </div>
-            </div>
-
-            {/* Sección de consejos por categoría - Sexo */}
-            <div>
-              <h2 className="text-2xl font-bold mb-4">Sexo</h2>
-              <div className="grid grid-cols-1 gap-4">
-                {consejosData
-                  .filter(consejo => consejo.categoria === "Sexo")
-                  .map(consejo => (
-                    <ConsejoCard 
-                      key={consejo.id} 
-                      consejo={consejo} 
-                      esFavorito={favoritos.includes(consejo.id)}
-                      onToggleFavorito={() => toggleFavorito(consejo.id)}
-                      onClick={() => setConsejoSeleccionado(consejo)}
-                    />
-                  ))
-                }
-              </div>
-            </div>
-          </TabsContent>
-
-          <TabsContent value="favoritos" className="space-y-6">
-            <div>
-              <h2 className="text-2xl font-bold mb-4">Mis consejos favoritos</h2>
-              {favoritos.length === 0 ? (
-                <div className="text-center py-8">
-                  <Bookmark size={40} className="mx-auto text-gray-400 mb-2" />
-                  <p className="text-gray-500">Aún no tienes consejos favoritos</p>
-                  <p className="text-gray-500 text-sm mt-1">Agrega consejos a favoritos para acceder rápidamente a ellos</p>
+      <div className="pt-6 pb-20">
+        {/* Navegación por categorías */}
+        <div className="luna-container px-4 pt-4 pb-6">
+          <div className="flex justify-between gap-2 items-center">
+            {categorias.map((categoria) => (
+              <div 
+                key={categoria.id}
+                onClick={() => setCategoriaActiva(categoria.id)}
+                className="flex flex-col items-center cursor-pointer w-1/3"
+              >
+                <div className={`w-12 h-12 rounded-full border-2 flex items-center justify-center mb-2 ${
+                  categoriaActiva === categoria.id ? "border-luna-purple" : "border-gray-300"
+                }`}>
+                  <categoria.icono size={24} className={categoriaActiva === categoria.id ? "text-luna-purple" : "text-gray-600"} />
                 </div>
-              ) : (
-                <div className="grid grid-cols-1 gap-4">
+                <p className="text-xs text-center font-medium">
+                  {categoria.nombre}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Pestaña principal para mostrar todos/favoritos */}
+        <div className="luna-container px-4">
+          <Tabs defaultValue="todos" className="w-full" value={categoriaActiva === "favoritos" ? "favoritos" : "todos"}>
+            <TabsList className="w-full grid grid-cols-2 mb-6">
+              <TabsTrigger 
+                value="todos" 
+                onClick={() => setCategoriaActiva("todos")}
+                className={categoriaActiva !== "favoritos" ? "text-luna-purple font-medium" : ""}
+              >
+                Todos los consejos
+              </TabsTrigger>
+              <TabsTrigger 
+                value="favoritos" 
+                onClick={() => setCategoriaActiva("favoritos")}
+                className={categoriaActiva === "favoritos" ? "text-luna-purple font-medium" : ""}
+              >
+                Mis favoritos
+              </TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="todos" className="space-y-6">
+              {/* Sección de consejos por categoría - Salud reproductiva */}
+              <div>
+                <h2 className="text-xl font-bold mb-4">Aspectos básicos de salud reproductiva</h2>
+                <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
                   {consejosData
-                    .filter(consejo => favoritos.includes(consejo.id))
+                    .filter(consejo => consejo.categoria === "Salud reproductiva")
                     .map(consejo => (
                       <ConsejoCard 
                         key={consejo.id} 
                         consejo={consejo} 
-                        esFavorito={true}
+                        esFavorito={favoritos.includes(consejo.id)}
                         onToggleFavorito={() => toggleFavorito(consejo.id)}
                         onClick={() => setConsejoSeleccionado(consejo)}
                       />
                     ))
                   }
                 </div>
-              )}
-            </div>
-          </TabsContent>
-        </Tabs>
-      </div>
+              </div>
 
-      {/* Modal de detalle de consejo */}
-      {consejoSeleccionado && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-lg w-full max-w-md max-h-[90vh] overflow-auto">
-            <div className="p-4 border-b flex justify-between items-center">
-              <h2 className="text-xl font-semibold">{consejoSeleccionado.titulo}</h2>
-              <button 
-                onClick={() => setConsejoSeleccionado(null)}
-                className="text-gray-500 hover:text-gray-700"
-              >
-                &times;
-              </button>
-            </div>
-            <div className="p-4">
-              <img 
-                src={consejoSeleccionado.imagen} 
-                alt={consejoSeleccionado.titulo}
-                className="w-full h-48 object-cover rounded-lg mb-4" 
-              />
-              <div className="flex justify-between items-center mb-4">
-                <span className="text-sm text-gray-500">{consejoSeleccionado.categoria}</span>
+              {/* Sección de consejos por categoría - Sexo */}
+              <div>
+                <h2 className="text-xl font-bold mb-4">Sexo</h2>
+                <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+                  {consejosData
+                    .filter(consejo => consejo.categoria === "Sexo")
+                    .map(consejo => (
+                      <ConsejoCard 
+                        key={consejo.id} 
+                        consejo={consejo} 
+                        esFavorito={favoritos.includes(consejo.id)}
+                        onToggleFavorito={() => toggleFavorito(consejo.id)}
+                        onClick={() => setConsejoSeleccionado(consejo)}
+                      />
+                    ))
+                  }
+                </div>
+              </div>
+            </TabsContent>
+
+            <TabsContent value="favoritos" className="space-y-6">
+              <div>
+                <h2 className="text-xl font-bold mb-4">Mis consejos favoritos</h2>
+                {favoritos.length === 0 ? (
+                  <div className="text-center py-8">
+                    <Bookmark size={36} className="mx-auto text-gray-400 mb-2" />
+                    <p className="text-gray-500">Aún no tienes consejos favoritos</p>
+                    <p className="text-gray-500 text-sm mt-1">Agrega consejos a favoritos para acceder rápidamente a ellos</p>
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+                    {consejosData
+                      .filter(consejo => favoritos.includes(consejo.id))
+                      .map(consejo => (
+                        <ConsejoCard 
+                          key={consejo.id} 
+                          consejo={consejo} 
+                          esFavorito={true}
+                          onToggleFavorito={() => toggleFavorito(consejo.id)}
+                          onClick={() => setConsejoSeleccionado(consejo)}
+                        />
+                      ))
+                    }
+                  </div>
+                )}
+              </div>
+            </TabsContent>
+          </Tabs>
+        </div>
+
+        {/* Modal de detalle de consejo */}
+        {consejoSeleccionado && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+            <div className="bg-white rounded-lg w-full max-w-md max-h-[90vh] overflow-auto">
+              <div className="p-4 border-b flex justify-between items-center">
+                <h2 className="text-xl font-semibold">{consejoSeleccionado.titulo}</h2>
                 <button 
-                  onClick={() => toggleFavorito(consejoSeleccionado.id)}
-                  className="text-luna-purple"
+                  onClick={() => setConsejoSeleccionado(null)}
+                  className="text-gray-500 hover:text-gray-700"
                 >
-                  {favoritos.includes(consejoSeleccionado.id) ? (
-                    <BookmarkCheck size={20} />
-                  ) : (
-                    <Bookmark size={20} />
-                  )}
+                  &times;
                 </button>
               </div>
-              <p className="text-gray-800 whitespace-pre-line">{consejoSeleccionado.contenido}</p>
+              <div className="p-4">
+                <img 
+                  src={consejoSeleccionado.imagen} 
+                  alt={consejoSeleccionado.titulo}
+                  className="w-full h-48 object-cover rounded-lg mb-4" 
+                />
+                <div className="flex justify-between items-center mb-4">
+                  <span className="text-sm text-gray-500">{consejoSeleccionado.categoria}</span>
+                  <button 
+                    onClick={() => toggleFavorito(consejoSeleccionado.id)}
+                    className="text-luna-purple"
+                  >
+                    {favoritos.includes(consejoSeleccionado.id) ? (
+                      <BookmarkCheck size={20} />
+                    ) : (
+                      <Bookmark size={20} />
+                    )}
+                  </button>
+                </div>
+                <p className="text-gray-800 whitespace-pre-line">{consejoSeleccionado.contenido}</p>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
 
-      {/* Navegación inferior */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t py-2 px-4">
-        <div className="flex justify-around">
-          <Link to="/calendar" className="flex flex-col items-center text-gray-500">
-            <Calendar size={24} />
-            <span className="text-xs mt-1">Hoy</span>
-          </Link>
-          <Link to="/consejos" className="flex flex-col items-center text-luna-purple">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="w-6 h-6">
-              <rect x="3" y="3" width="7" height="7" rx="1" fill="currentColor" />
-              <rect x="3" y="14" width="7" height="7" rx="1" fill="currentColor" />
-              <rect x="14" y="3" width="7" height="7" rx="1" fill="currentColor" />
-              <rect x="14" y="14" width="7" height="7" rx="1" fill="currentColor" />
-            </svg>
-            <span className="text-xs mt-1">Consejos</span>
-          </Link>
-          <Link to="#" className="flex flex-col items-center text-gray-500">
-            <MessageSquare size={24} />
-            <span className="text-xs mt-1">Mensajes</span>
-          </Link>
-          <Link to="/profile" className="flex flex-col items-center text-gray-500">
-            <Heart size={24} />
-            <span className="text-xs mt-1">Pareja</span>
-          </Link>
+        {/* Navegación inferior */}
+        <div className="fixed bottom-0 left-0 right-0 bg-white border-t py-2 px-4">
+          <div className="flex justify-around">
+            <Link to="/calendar" className="flex flex-col items-center text-gray-500">
+              <Calendar size={24} />
+              <span className="text-xs mt-1">Hoy</span>
+            </Link>
+            <Link to="/consejos" className="flex flex-col items-center text-luna-purple">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="w-6 h-6">
+                <rect x="3" y="3" width="7" height="7" rx="1" fill="currentColor" />
+                <rect x="3" y="14" width="7" height="7" rx="1" fill="currentColor" />
+                <rect x="14" y="3" width="7" height="7" rx="1" fill="currentColor" />
+                <rect x="14" y="14" width="7" height="7" rx="1" fill="currentColor" />
+              </svg>
+              <span className="text-xs mt-1">Consejos</span>
+            </Link>
+            <Link to="#" className="flex flex-col items-center text-gray-500">
+              <MessageSquare size={24} />
+              <span className="text-xs mt-1">Mensajes</span>
+            </Link>
+            <Link to="/profile" className="flex flex-col items-center text-gray-500">
+              <Heart size={24} />
+              <span className="text-xs mt-1">Pareja</span>
+            </Link>
+          </div>
         </div>
       </div>
     </div>
@@ -313,22 +297,22 @@ const ConsejoCard = ({ consejo, esFavorito, onToggleFavorito, onClick }: Consejo
         <img 
           src={consejo.imagen} 
           alt={consejo.titulo}
-          className="w-full h-44 object-cover" 
+          className="w-full h-28 object-cover" 
         />
-        <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-white p-4">
-          <h3 className="font-bold text-lg line-clamp-2">{consejo.titulo}</h3>
+        <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-white p-2">
+          <h3 className="font-bold text-sm line-clamp-1">{consejo.titulo}</h3>
         </div>
         <button 
-          className="absolute top-2 right-2 bg-white rounded-full p-1.5 shadow-md"
+          className="absolute top-1 right-1 bg-white rounded-full p-1 shadow-md"
           onClick={(e) => {
             e.stopPropagation();
             onToggleFavorito();
           }}
         >
           {esFavorito ? (
-            <BookmarkCheck size={18} className="text-luna-purple" />
+            <BookmarkCheck size={14} className="text-luna-purple" />
           ) : (
-            <Bookmark size={18} className="text-gray-600" />
+            <Bookmark size={14} className="text-gray-600" />
           )}
         </button>
       </CardContent>
