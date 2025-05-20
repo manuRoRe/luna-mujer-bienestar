@@ -17,6 +17,7 @@ import {
   Baby 
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 // Tipo para los consejos
 interface Consejo {
@@ -147,7 +148,7 @@ const ConsejosPage = () => {
               {/* Sección de consejos por categoría - Salud reproductiva */}
               <div>
                 <h2 className="text-xl font-bold mb-4">Aspectos básicos de salud reproductiva</h2>
-                <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+                <div className="grid grid-cols-3 gap-3">
                   {consejosData
                     .filter(consejo => consejo.categoria === "Salud reproductiva")
                     .map(consejo => (
@@ -166,7 +167,7 @@ const ConsejosPage = () => {
               {/* Sección de consejos por categoría - Sexo */}
               <div>
                 <h2 className="text-xl font-bold mb-4">Sexo</h2>
-                <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+                <div className="grid grid-cols-3 gap-3">
                   {consejosData
                     .filter(consejo => consejo.categoria === "Sexo")
                     .map(consejo => (
@@ -193,7 +194,7 @@ const ConsejosPage = () => {
                     <p className="text-gray-500 text-sm mt-1">Agrega consejos a favoritos para acceder rápidamente a ellos</p>
                   </div>
                 ) : (
-                  <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+                  <div className="grid grid-cols-3 gap-3">
                     {consejosData
                       .filter(consejo => favoritos.includes(consejo.id))
                       .map(consejo => (
@@ -250,34 +251,9 @@ const ConsejosPage = () => {
             </div>
           </div>
         )}
-
-        {/* Navegación inferior */}
-        <div className="fixed bottom-0 left-0 right-0 bg-white border-t py-2 px-4">
-          <div className="flex justify-around">
-            <Link to="/calendar" className="flex flex-col items-center text-gray-500">
-              <Calendar size={24} />
-              <span className="text-xs mt-1">Hoy</span>
-            </Link>
-            <Link to="/consejos" className="flex flex-col items-center text-luna-purple">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="w-6 h-6">
-                <rect x="3" y="3" width="7" height="7" rx="1" fill="currentColor" />
-                <rect x="3" y="14" width="7" height="7" rx="1" fill="currentColor" />
-                <rect x="14" y="3" width="7" height="7" rx="1" fill="currentColor" />
-                <rect x="14" y="14" width="7" height="7" rx="1" fill="currentColor" />
-              </svg>
-              <span className="text-xs mt-1">Consejos</span>
-            </Link>
-            <Link to="#" className="flex flex-col items-center text-gray-500">
-              <MessageSquare size={24} />
-              <span className="text-xs mt-1">Mensajes</span>
-            </Link>
-            <Link to="/profile" className="flex flex-col items-center text-gray-500">
-              <Heart size={24} />
-              <span className="text-xs mt-1">Pareja</span>
-            </Link>
-          </div>
-        </div>
       </div>
+      
+      <Footer />
     </div>
   );
 };
