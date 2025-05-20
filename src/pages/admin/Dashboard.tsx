@@ -31,8 +31,8 @@ const AdminDashboard = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold">Panel de Administración</h1>
-        <p className="text-muted-foreground">Estadísticas generales del sistema Luna</p>
+        <h1 className="text-2xl font-bold text-white">Panel de Administración</h1>
+        <p className="text-gray-300">Estadísticas generales del sistema Luna</p>
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -63,15 +63,15 @@ const AdminDashboard = () => {
 
       <div className="grid gap-6 md:grid-cols-2">
         {/* Top Symptoms Card */}
-        <div className="bg-white rounded-lg shadow p-6 border">
-          <h2 className="text-lg font-semibold mb-4">Síntomas Más Comunes</h2>
+        <div className="bg-black rounded-lg shadow p-6 border border-white/20">
+          <h2 className="text-lg font-semibold mb-4 text-white">Síntomas Más Comunes</h2>
           <div className="space-y-4">
             {commonSymptoms.map((symptom, index) => (
               <div key={index} className="flex items-center justify-between">
-                <span>{symptom.name}</span>
+                <span className="text-gray-200">{symptom.name}</span>
                 <div className="flex items-center">
-                  <span className="font-semibold mr-2">{symptom.count}</span>
-                  <div className="h-2 w-32 bg-gray-200 rounded-full overflow-hidden">
+                  <span className="font-semibold mr-2 text-white">{symptom.count}</span>
+                  <div className="h-2 w-32 bg-white/10 rounded-full overflow-hidden">
                     <div 
                       className="h-full bg-luna-purple" 
                       style={{ width: `${(symptom.count / commonSymptoms[0].count) * 100}%` }} 
@@ -84,16 +84,16 @@ const AdminDashboard = () => {
         </div>
 
         {/* Most Favorited Tips */}
-        <div className="bg-white rounded-lg shadow p-6 border">
+        <div className="bg-black rounded-lg shadow p-6 border border-white/20">
           <div className="flex justify-between items-center mb-4">
-            <h2 className="text-lg font-semibold">Consejos Más Guardados</h2>
+            <h2 className="text-lg font-semibold text-white">Consejos Más Guardados</h2>
             <span className="text-sm text-luna-purple">{tipsFavorited} favoritos totales</span>
           </div>
           <div className="space-y-4">
             {topTips.map((tip, index) => (
               <div key={index} className="flex items-center justify-between">
-                <span className="truncate pr-4 flex-1">{tip.title}</span>
-                <span className="bg-luna-light-purple/30 text-luna-purple px-2 py-1 rounded-full text-xs font-semibold">
+                <span className="truncate pr-4 flex-1 text-gray-200">{tip.title}</span>
+                <span className="bg-luna-purple/30 text-luna-purple px-2 py-1 rounded-full text-xs font-semibold">
                   {tip.favorites} ❤
                 </span>
               </div>

@@ -97,8 +97,8 @@ const AdminTips = () => {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-2xl font-bold">Gestión de Consejos</h1>
-          <p className="text-muted-foreground">Administra los consejos y tips publicados</p>
+          <h1 className="text-2xl font-bold text-white">Gestión de Consejos</h1>
+          <p className="text-gray-300">Administra los consejos y tips publicados</p>
         </div>
         <Button className="bg-luna-purple hover:bg-luna-purple/90">
           <MessageSquare className="mr-2 h-4 w-4" /> Nuevo Consejo
@@ -111,13 +111,13 @@ const AdminTips = () => {
             placeholder="Buscar consejo..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full"
+            className="w-full bg-white/10 text-white border-white/20"
           />
         </div>
         
         <div className="flex gap-2">
           <select 
-            className="rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" 
+            className="rounded-md border border-white/20 bg-white/10 px-3 py-2 text-sm text-white ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" 
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
           >
@@ -129,49 +129,49 @@ const AdminTips = () => {
         </div>
       </div>
 
-      <div className="rounded-md border shadow">
+      <div className="rounded-md border border-white/20 shadow bg-black">
         <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead className="w-12"></TableHead>
-              <TableHead>Título</TableHead>
-              <TableHead>Categoría</TableHead>
-              <TableHead className="hidden md:table-cell">Creado</TableHead>
-              <TableHead className="text-center">
+          <TableHeader className="bg-white/5">
+            <TableRow className="border-white/10 hover:bg-white/5">
+              <TableHead className="w-12 text-white"></TableHead>
+              <TableHead className="text-white">Título</TableHead>
+              <TableHead className="text-white">Categoría</TableHead>
+              <TableHead className="hidden md:table-cell text-white">Creado</TableHead>
+              <TableHead className="text-center text-white">
                 <Heart className="h-4 w-4 inline" />
               </TableHead>
-              <TableHead>Acciones</TableHead>
+              <TableHead className="text-white">Acciones</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {filteredTips.map((tip) => (
-              <TableRow key={tip.id}>
+              <TableRow key={tip.id} className="border-white/10 hover:bg-white/5">
                 <TableCell>
                   <div 
-                    className="w-10 h-10 rounded bg-cover bg-center border" 
+                    className="w-10 h-10 rounded bg-cover bg-center border border-white/20" 
                     style={{ backgroundImage: `url(${tip.image})` }}
                   ></div>
                 </TableCell>
-                <TableCell className="font-medium">{tip.title}</TableCell>
+                <TableCell className="font-medium text-white">{tip.title}</TableCell>
                 <TableCell>
                   <span className={`px-2 py-1 rounded-full text-xs ${
                     tip.category === "Salud reproductiva" 
-                      ? "bg-purple-100 text-purple-800" 
-                      : "bg-blue-100 text-blue-800"
+                      ? "bg-purple-900/60 text-purple-200" 
+                      : "bg-blue-900/60 text-blue-200"
                   }`}>
                     {tip.category}
                   </span>
                 </TableCell>
-                <TableCell className="hidden md:table-cell">{tip.createdAt}</TableCell>
-                <TableCell className="text-center">
+                <TableCell className="hidden md:table-cell text-gray-300">{tip.createdAt}</TableCell>
+                <TableCell className="text-center text-white">
                   <span className="font-medium">{tip.favorites}</span>
                 </TableCell>
                 <TableCell>
                   <div className="flex space-x-2">
-                    <Button variant="ghost" size="icon" className="h-8 w-8">
+                    <Button variant="ghost" size="icon" className="h-8 w-8 text-white hover:text-luna-purple hover:bg-white/10">
                       <Edit className="h-4 w-4" />
                     </Button>
-                    <Button variant="ghost" size="icon" className="h-8 w-8 text-red-500">
+                    <Button variant="ghost" size="icon" className="h-8 w-8 text-red-500 hover:bg-white/10">
                       <Trash className="h-4 w-4" />
                     </Button>
                   </div>
@@ -183,18 +183,18 @@ const AdminTips = () => {
       </div>
 
       <Pagination>
-        <PaginationContent>
+        <PaginationContent className="text-white">
           <PaginationItem>
-            <PaginationPrevious href="#" />
+            <PaginationPrevious href="#" className="text-white hover:text-luna-purple" />
           </PaginationItem>
           <PaginationItem>
-            <PaginationLink href="#" isActive>1</PaginationLink>
+            <PaginationLink href="#" isActive className="bg-luna-purple text-white border-white/20">1</PaginationLink>
           </PaginationItem>
           <PaginationItem>
-            <PaginationLink href="#">2</PaginationLink>
+            <PaginationLink href="#" className="text-white hover:bg-white/10 border-white/20">2</PaginationLink>
           </PaginationItem>
           <PaginationItem>
-            <PaginationNext href="#" />
+            <PaginationNext href="#" className="text-white hover:text-luna-purple" />
           </PaginationItem>
         </PaginationContent>
       </Pagination>

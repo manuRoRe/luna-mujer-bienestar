@@ -23,13 +23,13 @@ const AdminSidebar = () => {
   ];
 
   return (
-    <aside className="w-64 bg-sidebar shadow-md flex-shrink-0 h-full">
-      <div className="flex items-center justify-center h-16 border-b border-sidebar-border">
+    <aside className="w-64 bg-black shadow-md flex-shrink-0 h-full border-r border-white/10">
+      <div className="flex items-center justify-center h-16 border-b border-white/10">
         <Link to="/admin" className="flex items-center space-x-2">
           <div className="w-8 h-8 rounded-full bg-gradient-to-br from-luna-purple to-luna-pink flex items-center justify-center">
             <div className="w-4 h-4 rounded-full bg-white"></div>
           </div>
-          <span className="font-bold text-xl text-sidebar-foreground">Luna Admin</span>
+          <span className="font-bold text-xl text-white">Luna Admin</span>
         </Link>
       </div>
       <nav className="mt-6 px-4">
@@ -44,8 +44,8 @@ const AdminSidebar = () => {
                   to={item.path}
                   className={`flex items-center p-3 text-sm font-medium rounded-md transition-colors ${
                     isActive
-                      ? "bg-sidebar-accent text-sidebar-accent-foreground"
-                      : "text-sidebar-foreground hover:bg-sidebar-accent/50 hover:text-sidebar-accent-foreground"
+                      ? "bg-white/10 text-white"
+                      : "text-gray-300 hover:bg-white/5 hover:text-white"
                   }`}
                 >
                   <item.icon className="h-5 w-5 mr-3" />
