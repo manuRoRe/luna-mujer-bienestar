@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { 
   Tabs, 
   TabsContent, 
@@ -74,8 +74,8 @@ const categorias = [
 
 const ConsejosPage = () => {
   const [favoritos, setFavoritos] = useState<number[]>([]);
-  const [consejoSeleccionado, setConsejoSeleccionado] = useState<Consejo | null>(null);
   const [categoriaActiva, setCategoriaActiva] = useState<string>("todos");
+  const navigate = useNavigate();
 
   // Función para alternar un consejo como favorito
   const toggleFavorito = (id: number) => {
@@ -157,7 +157,7 @@ const ConsejosPage = () => {
                         consejo={consejo} 
                         esFavorito={favoritos.includes(consejo.id)}
                         onToggleFavorito={() => toggleFavorito(consejo.id)}
-                        onClick={() => setConsejoSeleccionado(consejo)}
+                        onClick={() => navigate(`/consejo/${consejo.id}`)}
                       />
                     ))
                   }
@@ -176,7 +176,7 @@ const ConsejosPage = () => {
                         consejo={consejo} 
                         esFavorito={favoritos.includes(consejo.id)}
                         onToggleFavorito={() => toggleFavorito(consejo.id)}
-                        onClick={() => setConsejoSeleccionado(consejo)}
+                        onClick={() => navigate(`/consejo/${consejo.id}`)}
                       />
                     ))
                   }
@@ -203,7 +203,7 @@ const ConsejosPage = () => {
                           consejo={consejo} 
                           esFavorito={true}
                           onToggleFavorito={() => toggleFavorito(consejo.id)}
-                          onClick={() => setConsejoSeleccionado(consejo)}
+                          onClick={() => navigate(`/consejo/${consejo.id}`)}
                         />
                       ))
                     }
@@ -213,44 +213,6 @@ const ConsejosPage = () => {
             </TabsContent>
           </Tabs>
         </div>
-
-        {/* Modal de detalle de consejo */}
-        {consejoSeleccionado && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-            <div className="bg-white rounded-lg w-full max-w-md max-h-[90vh] overflow-auto">
-              <div className="p-4 border-b flex justify-between items-center">
-                <h2 className="text-xl font-semibold">{consejoSeleccionado.titulo}</h2>
-                <button 
-                  onClick={() => setConsejoSeleccionado(null)}
-                  className="text-gray-500 hover:text-gray-700"
-                >
-                  &times;
-                </button>
-              </div>
-              <div className="p-4">
-                <img 
-                  src={consejoSeleccionado.imagen} 
-                  alt={consejoSeleccionado.titulo}
-                  className="w-full h-48 object-cover rounded-lg mb-4" 
-                />
-                <div className="flex justify-between items-center mb-4">
-                  <span className="text-sm text-gray-500">{consejoSeleccionado.categoria}</span>
-                  <button 
-                    onClick={() => toggleFavorito(consejoSeleccionado.id)}
-                    className="text-luna-purple"
-                  >
-                    {favoritos.includes(consejoSeleccionado.id) ? (
-                      <BookmarkCheck size={20} />
-                    ) : (
-                      <Bookmark size={20} />
-                    )}
-                  </button>
-                </div>
-                <p className="text-gray-800 whitespace-pre-line">{consejoSeleccionado.contenido}</p>
-              </div>
-            </div>
-          </div>
-        )}
       </div>
       
       <Footer />

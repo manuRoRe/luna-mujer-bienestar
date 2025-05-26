@@ -11,6 +11,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
 import ConsejosPage from "./pages/Consejos";
+import ConsejoDetallePage from "./pages/ConsejoDetalle";
 
 // Admin Pages
 import AdminDashboard from "./pages/admin/Dashboard";
@@ -36,6 +37,7 @@ const App = () => (
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/consejos" element={<ConsejosPage />} />
+          <Route path="/consejo/:id" element={<ConsejoDetallePage />} />
           
           {/* Admin Routes */}
           <Route path="/admin" element={<AdminLayout />}>
